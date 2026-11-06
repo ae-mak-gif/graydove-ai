@@ -1,0 +1,13 @@
+.index-row>span{font-family:var(--mono);font-size:9px;color:#81827b}
+.index-row strong{font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-.04em}
+.index-row svg{justify-self:end}
+.closing-band{padding:115px var(--page) 95px;border-top:1px solid var(--line)}
+.closing-band h2,.studio-cta h2{font-family:var(--display);font-size:clamp(50px,7vw,98px);line-height:.97;letter-spacing:-.075em;font-weight:500;margin:50px 0 56px}
+.closing-bottom{display:flex;justify-content:space-between;align-items:flex-end}
+.closing-bottom p{font-size:13px;color:#666;max-width:290px;line-height:1.6}
+.circle-link{width:56px;height:56px;border:1px solid #aaa;border-radius:50%;display:grid;place-items:center;transition:background .25s,color .25s,transform .25s}
+.circle-link:hover{background:#111;color:#fff;transform:rotate(-45deg)}
+.site-footer{padding:44px var(--page) 25px;background:#ecece7}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:start;padding-bottom:70px}
+.footer-brand{font-size:11px}
+.footer-top p{font-size:13px;line-height:1.5;color:#65665f;margin:0}

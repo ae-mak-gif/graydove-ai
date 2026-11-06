@@ -1,0 +1,5 @@
+import Link from "next/link";
+import {ArrowDownRight,ArrowUpRight} from "lucide-react";
+import {Gallery} from "@/components/gallery";
+import {PageTransition} from "@/components/transition";
+export default function Home(){return <PageTransition><div className="home-intro"><div className="intro-kicker"><span>INDEPENDENT AI AGENCY</span><span>EST. 2026 · DIGITAL SYSTEMS</span></div><h1>Intelligence,<br/><em>designed into</em> the work.</h1><div className="intro-bottom"><p>We design and develop intelligent systems, autonomous agents and connected workflows that make complex work feel clear.</p><Link href="/studio" className="text-link">Discover the studio <ArrowUpRight size={14}/></Link><span className="intro-index">A01 — 2026</span></div></div><Gallery/><section className="closing-band"><div className="eyebrow">THE NEXT QUESTION</div><h2>Good systems make<br/>room for <em>better thinking.</em></h2><div className="closing-bottom"><p>From the first question to the final hand-off, we build with intent.</p><Link href="/contact" className="circle-link" aria-label="Contact GRAYDOVE"><ArrowDownRight size={23}/></Link></div></section></PageTransition>}

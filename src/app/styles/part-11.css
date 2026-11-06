@@ -1,0 +1,11 @@
+.contact-page{padding:48px var(--page) 70px;min-height:calc(100vh - var(--header));display:flex;flex-direction:column;justify-content:space-between}
+.contact-page h1{margin:65px 0}
+.contact-lower{display:grid;grid-template-columns:minmax(220px,400px) 1fr;gap:30px;align-items:flex-end}
+.contact-lower p{font-size:14px;line-height:1.7;color:#66675f;margin:0;max-width:360px}
+.contact-email{font-family:var(--display);font-size:clamp(20px,3vw,34px);letter-spacing:-.05em;display:flex;align-items:center;gap:13px;width:max-content;border-bottom:1px solid #aaa;padding-bottom:12px}
+.contact-email svg:last-child{margin-left:15px}
+.contact-meta{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:17px;margin-top:80px}
+.project-detail{padding:30px var(--page) 90px}
+.project-back{display:flex;justify-content:space-between;padding:0 0 24px;border-bottom:1px solid var(--line)}
+.project-back a{display:flex;align-items:center;gap:8px}
+.project-heading{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:flex-end;padding:60px 0 48px}

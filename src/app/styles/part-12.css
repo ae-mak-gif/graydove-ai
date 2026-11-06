@@ -1,0 +1,11 @@
+.project-heading h1{font-family:var(--display);font-size:clamp(42px,7vw,88px);font-weight:500;letter-spacing:-.075em;line-height:.95;margin:25px 0 0}
+.project-heading p{font-size:14px;line-height:1.7;color:#666;max-width:430px;margin:0 0 5px}
+.project-hero-visual{position:relative;aspect-ratio:1.85;background:#dfe2ed;overflow:hidden}
+.project-hero-visual img{object-fit:cover}
+.project-brief{display:grid;grid-template-columns:1fr 1fr;gap:10%;padding:75px 10%}
+.project-brief p{font-family:var(--display);font-size:clamp(20px,2.5vw,32px);line-height:1.35;letter-spacing:-.04em;max-width:490px}
+.project-system{padding:0 0 70px}
+.system-flow{display:flex;align-items:stretch;gap:8px;padding-top:25px;flex-wrap:wrap}
+.system-flow>div{position:relative;min-width:130px;flex:1;border:1px solid var(--line);padding:15px 12px;min-height:90px;display:flex;flex-direction:column;justify-content:space-between;background:#f0f0eb}
+.system-flow>div>strong{font-size:12px;font-weight:500}
+.system-flow>div>i{position:absolute;right:-8px;top:50%;width:8px;border-top:1px solid #aaa}

@@ -1,0 +1,19 @@
+@media(max-width:900px){.desktop-nav{gap:22px}}
+@media(max-width:900px){.header-right .availability{display:none}}
+@media(max-width:900px){.gallery-toolbar{grid-template-columns:110px 1fr auto}}
+@media(max-width:900px){.filters{justify-content:flex-start}}
+@media(max-width:900px){.gallery-canvas{height:720px}}
+@media(max-width:900px){.panel-a{left:2%;width:29%}}
+@media(max-width:900px){.panel-b{right:6%;width:23%}}
+@media(max-width:900px){.panel-c{left:38%;width:27%}}
+@media(max-width:900px){.panel-d{right:0;width:25%}}
+@media(max-width:900px){.panel-e{left:7%;width:22%}}
+@media(max-width:900px){.panel-f{left:34%;width:29%}}
+@media(max-width:900px){.panel-g{right:28%;width:18%}}
+@media(max-width:900px){.panel-h{left:0;width:19%}}
+@media(max-width:900px){.research-item{grid-template-columns:90px 1fr 1.2fr;gap:18px}}
+@media(max-width:900px){.footer-bottom{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.footer-location{display:none}}
+@media(max-width:650px){:root{--page:21px;--header:66px}}
+@media(max-width:650px){.site-header{grid-template-columns:1fr auto}}
+@media(max-width:650px){.desktop-nav,.header-right{display:none}}

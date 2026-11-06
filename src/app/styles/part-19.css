@@ -1,0 +1,15 @@
+@media(max-width:650px){.capabilities-section,.method-section{padding-bottom:70px}}
+@media(max-width:650px){.capability-list{grid-template-columns:1fr}}
+@media(max-width:650px){.capability-list h3{font-size:16px}}
+@media(max-width:650px){.method-grid{grid-template-columns:1fr 1fr;gap:28px 18px}}
+@media(max-width:650px){.method-grid h3{margin-top:24px}}
+@media(max-width:650px){.studio-cta{padding-top:65px;padding-bottom:75px}}
+@media(max-width:650px){.contact-page{min-height:calc(100vh - 66px);padding-top:35px;padding-bottom:35px}}
+@media(max-width:650px){.contact-page h1{font-size:clamp(58px,14vw,88px);margin:75px 0}}
+@media(max-width:650px){.contact-lower{grid-template-columns:1fr;gap:38px}}
+@media(max-width:650px){.contact-email{font-size:21px}}
+@media(max-width:650px){.contact-meta{flex-direction:column;gap:12px;margin-top:60px}}
+@media(max-width:650px){.project-detail{padding-top:23px}}
+@media(max-width:650px){.project-heading{grid-template-columns:1fr;gap:25px;padding:45px 0 30px}}
+@media(max-width:650px){.project-heading h1{font-size:clamp(44px,12vw,75px)}}
+@media(max-width:650px){.project-heading p{font-size:13px}}

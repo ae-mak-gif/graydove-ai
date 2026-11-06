@@ -1,0 +1,3 @@
+import type {Metadata} from "next";
+export const metadata:Metadata={title:"Privacy"};
+export default function Privacy(){return <section className="legal-page"><div className="eyebrow">LEGAL / 01</div><h1>Privacy</h1><p>This demonstration website does not currently collect personal information through forms or user accounts. If you contact GRAYDOVE by email, your message and contact details will be used only to respond to your enquiry.</p><p>Replace this placeholder with a jurisdiction-specific privacy notice before collecting personal data or enabling analytics.</p><a href="mailto:hello@graydove.ai">hello@graydove.ai</a></section>}

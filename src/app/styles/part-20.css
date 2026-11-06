@@ -1,0 +1,13 @@
+@media(max-width:650px){.project-hero-visual{aspect-ratio:1.12}}
+@media(max-width:650px){.project-brief{grid-template-columns:1fr;gap:25px;padding:45px 0}}
+@media(max-width:650px){.project-brief p{font-size:22px}}
+@media(max-width:650px){.system-flow>div{min-width:calc(50% - 8px);min-height:76px}}
+@media(max-width:650px){.system-flow>div>i{display:none}}
+@media(max-width:650px){.project-capabilities{grid-template-columns:1fr;gap:18px}}
+@media(max-width:650px){.legal-page{padding-top:50px}}
+@media(max-width:650px){.legal-page h1{font-size:64px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.orbital-placeholder{width:100%;height:100%;background:radial-gradient(circle at 50% 50%,#dce3ff 0,transparent 58%);opacity:.6}
+.footer-social{display:flex;gap:28px;padding:0 0 22px;border-bottom:1px solid #d1d1ca;margin-bottom:17px}
+.footer-social a{font-size:10px;color:#565750;display:flex;align-items:center;gap:5px}
+.footer-social a:hover{color:#000}

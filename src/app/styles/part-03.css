@@ -1,0 +1,10 @@
+.home-intro h1,.page-hero h1,.contact-page h1{font-family:var(--display);font-size:clamp(58px,9.7vw,146px);line-height:.91;letter-spacing:-.085em;font-weight:500;margin:70px 0 52px;max-width:1100px}
+.home-intro h1 em,.page-hero h1 em,.contact-page h1 em,.closing-band h2 em,.studio-manifesto em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.075em}
+.intro-bottom{display:grid;grid-template-columns:minmax(220px,360px) 1fr auto;align-items:flex-end;gap:28px}
+.intro-bottom p{font-size:14px;line-height:1.65;color:#5e5f59;max-width:340px;margin:0}
+.text-link{font-size:12px;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid #aaa;padding-bottom:8px;width:max-content;transition:gap .25s,border-color .25s}
+.text-link:hover{gap:17px;border-color:#111}
+.intro-index{justify-self:end}
+.gallery-section{padding:0 var(--page) 24px}
+.gallery-toolbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-height:78px;display:grid;grid-template-columns:160px 1fr auto;align-items:center;gap:18px}
+.gallery-count{display:flex;flex-direction:column;gap:6px}
