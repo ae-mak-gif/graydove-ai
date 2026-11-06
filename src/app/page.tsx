@@ -72,7 +72,7 @@ export default function Home() {
       <section className="gd-work-intro" id="explorations"><div><span className="gd-section-index">04 / SELECTED EXPLORATIONS</span><h2>Ideas made <em>tangible.</em></h2></div><p>A growing collection of AI products, interfaces and systems. Each exploration tests a different way intelligence can become useful, observable and connected.</p></section>
       <Gallery />
 
-      <section className="gd-final-cta"><div><span className="gd-section-index">05 / HAVE A QUESTION?</span><h2>Let's make something<br/><em>meaningful.</em></h2></div><div className="gd-final-copy"><p>Bring us a process that needs rethinking, a problem worth solving or an idea you want to explore. We can help shape the next step.</p><Link href="/contact" className="gd-button gd-button-light">Talk to GRAYDOVE <ArrowUpRight size={15}/></Link></div></section>
+      <section className="gd-final-cta"><div><span className="gd-section-index">05 / HAVE A QUESTION?</span><h2>Let&apos;s make something<br/><em>meaningful.</em></h2></div><div className="gd-final-copy"><p>Bring us a process that needs rethinking, a problem worth solving or an idea you want to explore. We can help shape the next step.</p><Link href="/contact" className="gd-button gd-button-light">Talk to GRAYDOVE <ArrowUpRight size={15}/></Link></div></section>
     </PageTransition>
   );
 }
