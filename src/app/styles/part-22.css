@@ -1,0 +1,258 @@
+/* GRAYDOVE refinement: preserve UNVEIL's monochrome interface while keeping all project art in full colour. */
+:root {
+  --paper: #ffffff;
+  --ink: #000000;
+  --muted: #777777;
+  --line: #e7e7e7;
+  --soft: #f7f7f7;
+  --page: clamp(22px, 4.4vw, 72px);
+}
+
+html,
+body {
+  background: #ffffff;
+  color: #000000;
+}
+
+.site-header {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom-color: #e7e7e7;
+  backdrop-filter: blur(12px);
+}
+
+.desktop-nav a,
+.header-contact {
+  color: #555555;
+}
+
+.availability i {
+  background: #111111;
+  box-shadow: none;
+}
+
+.home-intro {
+  min-height: 0;
+  padding: 22px var(--page) 25px;
+  justify-content: flex-start;
+  gap: 28px;
+}
+
+.intro-kicker {
+  color: #777777;
+}
+
+.home-intro h1 {
+  max-width: 760px;
+  font-size: clamp(38px, 5.3vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.075em;
+  margin: 0;
+}
+
+.home-intro h1 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.intro-bottom {
+  grid-template-columns: minmax(300px, 1.25fr) minmax(220px, 0.75fr) auto;
+  align-items: end;
+  gap: 28px;
+}
+
+.intro-bottom p {
+  max-width: 360px;
+  color: #666666;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.intro-index {
+  color: #777777;
+}
+
+.gallery-section {
+  padding-top: 0;
+}
+
+.gallery-toolbar {
+  grid-template-columns: 145px minmax(0, 1fr) auto;
+  border-top-color: #e7e7e7;
+  border-bottom-color: #e7e7e7;
+}
+
+.filters {
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.filters button,
+.view-switch button {
+  border-radius: 0;
+  background: transparent;
+  padding: 9px 2px;
+  color: #777777;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}
+
+.filters button:hover,
+.filters button.selected {
+  background: transparent;
+  color: #000000;
+  border-bottom-color: #000000;
+}
+
+.view-switch {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  gap: 12px;
+}
+
+.view-switch button {
+  gap: 6px;
+}
+
+.view-switch button.selected {
+  background: transparent;
+  color: #000000;
+  border-bottom-color: #000000;
+  box-shadow: none;
+}
+
+.gallery-canvas {
+  border-bottom-color: #e7e7e7;
+}
+
+.gallery-orbit {
+  opacity: 0.86;
+}
+
+.panel-image {
+  background: #f1f1f1;
+  box-shadow: none;
+}
+
+.panel-link:hover .panel-image {
+  transform: translateY(-4px);
+  box-shadow: none;
+}
+
+.project-panel.is-active {
+  filter: none;
+}
+
+.panel-open {
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.panel-meta {
+  color: #222222;
+}
+
+.panel-meta span:last-child {
+  color: #777777;
+}
+
+.index-row:hover {
+  background: #f7f7f7;
+}
+
+.closing-band {
+  background: #ffffff;
+  border-top-color: #e7e7e7;
+}
+
+.site-footer {
+  background: #ffffff;
+  border-top: 1px solid #e7e7e7;
+}
+
+.footer-bottom,
+.footer-social {
+  border-color: #e7e7e7;
+}
+
+.footer-social a {
+  color: #555555;
+}
+
+.page-hero,
+.project-detail,
+.contact-page,
+.legal-page {
+  background: #ffffff;
+}
+
+.project-hero-visual {
+  background: #f2f2f2;
+}
+
+.system-flow > div {
+  background: #ffffff;
+}
+
+.project-capabilities > div span {
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  .gallery-toolbar {
+    grid-template-columns: 110px minmax(0, 1fr) auto;
+  }
+
+  .filters {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 650px) {
+  .home-intro {
+    padding-top: 18px;
+    padding-bottom: 20px;
+    gap: 34px;
+  }
+
+  .home-intro h1 {
+    font-size: clamp(38px, 10.8vw, 58px);
+    margin: 0;
+  }
+
+  .intro-bottom {
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+  }
+
+  .intro-bottom p {
+    grid-column: 1 / -1;
+    max-width: 330px;
+  }
+
+  .intro-index {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  .gallery-toolbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .filters {
+    gap: 12px;
+  }
+
+  .view-switch {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-image,
+  .filters button,
+  .view-switch button {
+    transition: none !important;
+  }
+}
