@@ -17,16 +17,17 @@ try {
     if (!response || response.status() !== 200) throw new Error("Route failed: " + route);
   }
   await page.goto(base, { waitUntil: "networkidle" });
-  await page.getByRole("button", { name: /Index/ }).click();
-  await page.waitForSelector(".index-row");
+  await page.getByRole("button", { name: /index/i }).click();
+  await page.waitForSelector(".unveil-index-row");
   if (await page.locator(".index-row").count() !== 8) throw new Error("Index should list all eight projects");
   await page.getByRole("button", { name: "AI Agents" }).click();
+  await page.waitForFunction(() => document.querySelectorAll(".unveil-index-row").length === 2);
   if (await page.locator(".index-row").count() !== 2) throw new Error("AI Agents filter should return two projects");
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   await mobile.goto(base, { waitUntil: "networkidle" });
   if (await mobile.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error("Mobile layout overflows horizontally");
   await mobile.getByRole("button", { name: "Open menu" }).click();
-  if (await mobile.locator(".mobile-nav a").count() !== 4) throw new Error("Mobile navigation should expose four links");
+  if (await mobile.locator(".mobile-nav a").count() !== 5) throw new Error("Mobile navigation should expose four links");
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join("; "));
   console.log("Smoke checks passed: " + routes.length + " routes, gallery modes, filtering, mobile navigation and responsive width.");
 } finally {
