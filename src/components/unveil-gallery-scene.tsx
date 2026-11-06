@@ -1,6 +1,6 @@
 "use client";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { TextureLoader, type Group } from "three";
+import { TextureLoader, SRGBColorSpace, type Group } from "three";
 import { useRef } from "react";
 import { projects as allProjects, type Project } from "@/data/projects";
 
@@ -9,6 +9,7 @@ type Props = { projects: Project[]; onSelect: (slug: string) => void; onHover: (
 function ProjectPlanes({ projects, onSelect, onHover, active, reduced }: Props) {
   const textures = useLoader(TextureLoader, projects.map((project) => project.image));
   const group = useRef<Group | null>(null);
+  textures.forEach((texture) => { texture.colorSpace = SRGBColorSpace; });
   useFrame((state, delta) => {
     if (!group.current || reduced) return;
     const targetX = state.pointer.x * 0.16;
@@ -18,17 +19,17 @@ function ProjectPlanes({ projects, onSelect, onHover, active, reduced }: Props) 
     group.current.position.y = Math.sin(state.clock.elapsedTime * 0.22) * 0.045;
   });
   const positions = [
-    [-4.45, 1.48, -0.45], [-1.48, 1.48, -0.12], [1.48, 1.48, 0.12], [4.45, 1.48, -0.25],
-    [-4.45, -1.42, 0.08], [-1.48, -1.42, -0.3], [1.48, -1.42, -0.05], [4.45, -1.42, -0.42]
+    [-5.25, -1.05, -1.35], [-3.75, -0.76, -0.9], [-2.25, -0.43, -0.48], [-0.75, -0.12, -0.12],
+    [0.75, 0.12, 0.08], [2.25, 0.43, -0.18], [3.75, 0.76, -0.55], [5.25, 1.05, -1.05]
   ] as const;
   return <group ref={group}>
     {projects.map((project, index) => {
       const selected = active === project.slug;
       const position = positions[index] ?? [0, 0, 0];
-      return <group key={project.slug} position={position} rotation={[0, (index % 2 ? -0.045 : 0.045), (index % 3 - 1) * 0.018]}>
+      return <group key={project.slug} position={position} rotation={[0, (index % 2 ? -0.11 : 0.11), (index - 3.5) * 0.025]}>
         <mesh
-          scale={selected ? [1.075, 1.075, 1] : [1, 1, 1]}
-          position={[0, selected ? 0.12 : 0, selected ? 0.34 : 0]}
+          scale={selected ? [1.12, 1.12, 1] : [1, 1, 1]}
+          position={[0, selected ? 0.12 : 0, selected ? 0.62 : 0]}
           onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; onHover(project.slug); }}
           onPointerOut={() => { document.body.style.cursor = "auto"; onHover(null); }}
           onClick={(event) => { event.stopPropagation(); onSelect(project.slug); }}

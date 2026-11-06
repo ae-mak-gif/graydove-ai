@@ -20,6 +20,7 @@ export function Gallery() {
   const reduce = useReducedMotion();
   const router = useRouter();
   const filtered = useMemo(() => projects.filter((project) => category === "All" || project.category === category), [category]);
+  const activeProject = projects.find((project) => project.slug === active);
 
   return <section className="gallery-section unveil-gallery" aria-label="Selected AI projects">
     <div className="gallery-toolbar unveil-toolbar">
@@ -51,7 +52,7 @@ export function Gallery() {
         </motion.div>}
       </AnimatePresence>
       <div className="unveil-stage-bottom">
-        <span>AN INDEPENDENT AI AGENCY</span>
+        <span>{activeProject ? activeProject.number + " / " + activeProject.title.toUpperCase() + " — " + activeProject.category.toUpperCase() : "AN INDEPENDENT AI AGENCY"}</span>
         <div className="unveil-mode-switch" aria-label="Project view">
           <button type="button" onClick={() => setMode("overview")} aria-pressed={mode === "overview"} className={mode === "overview" ? "selected" : ""}><Layers3 size={13}/> OVERVIEW</button>
           <button type="button" onClick={() => setMode("index")} aria-pressed={mode === "index"} className={mode === "index" ? "selected" : ""}><Grid2X2 size={13}/> INDEX</button>
