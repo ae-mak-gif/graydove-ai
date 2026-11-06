@@ -23,7 +23,8 @@ try {
   await page.getByRole("button", { name: "Pain points" }).click();
   if (await page.locator(".iol-pain-list article").count() !== 6) throw new Error("Each vertical should expose six researched pain points");
   await page.goto(base, { waitUntil: "networkidle" });
-  await page.getByRole("button", { name: /index/i }).click();
+  await page.waitForFunction(() => document.querySelectorAll(".unveil-mode-switch button").length === 2);
+  await page.locator(".unveil-mode-switch button").nth(1).click();
   await page.waitForSelector(".unveil-index-row");
   if (await page.locator(".unveil-index-row").count() !== 8) throw new Error("Index should list all eight projects");
   await page.getByRole("button", { name: "AI Agents" }).click();
