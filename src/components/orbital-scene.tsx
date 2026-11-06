@@ -1,55 +1,52 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 
 const nodeColours = ["#65d8c1", "#f1a36c", "#a99bff", "#73cce5", "#ef91b8", "#f0c36c"];
 
+const vertexShader = `
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  void main() {
+    vNormal = normalize(normalMatrix * normal);
+    vec4 modelPosition = modelViewMatrix * vec4(position, 1.0);
+    vPosition = position;
+    gl_Position = projectionMatrix * modelPosition;
+  }
+`;
+
+const fragmentShader = `
+  uniform float uTime;
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  void main() {
+    float band = sin(vPosition.y * 8.0 + uTime * 0.55) * 0.5 + 0.5;
+    vec3 mint = vec3(0.28, 0.83, 0.70);
+    vec3 violet = vec3(0.55, 0.48, 0.96);
+    vec3 amber = vec3(0.96, 0.66, 0.39);
+    vec3 colour = mix(mint, violet, band);
+    colour = mix(colour, amber, smoothstep(0.72, 1.0, band) * 0.55);
+    float light = 0.48 + 0.52 * abs(dot(normalize(vNormal), normalize(vec3(0.4, 0.7, 1.0))));
+    gl_FragColor = vec4(colour * light, 0.94);
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
+  }
+`;
+
 function Network() {
   const group = useRef<THREE.Group>(null);
   const core = useRef<THREE.Mesh>(null);
-  const coreMaterial = useMemo(() => new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 } },
-    vertexShader: `
-      varying vec3 vNormal;
-      varying vec3 vPosition;
-      void main() {
-        vNormal = normalize(normalMatrix * normal);
-        vec4 modelPosition = modelViewMatrix * vec4(position, 1.0);
-        vPosition = position;
-        gl_Position = projectionMatrix * modelPosition;
-      }
-    `,
-    fragmentShader: `
-      uniform float uTime;
-      varying vec3 vNormal;
-      varying vec3 vPosition;
-      void main() {
-        float band = sin(vPosition.y * 8.0 + uTime * 0.55) * 0.5 + 0.5;
-        vec3 mint = vec3(0.28, 0.83, 0.70);
-        vec3 violet = vec3(0.55, 0.48, 0.96);
-        vec3 amber = vec3(0.96, 0.66, 0.39);
-        vec3 colour = mix(mint, violet, band);
-        colour = mix(colour, amber, smoothstep(0.72, 1.0, band) * 0.55);
-        float light = 0.48 + 0.52 * abs(dot(normalize(vNormal), normalize(vec3(0.4, 0.7, 1.0))));
-        gl_FragColor = vec4(colour * light, 0.94);
-        #include <tonemapping_fragment>
-        #include <colorspace_fragment>
-      }
-    `,
-    transparent: true
-  }), []);
+  const coreMaterial = useRef<THREE.ShaderMaterial>(null);
 
   useFrame((state, delta) => {
     if (group.current) {
       group.current.rotation.y += delta * 0.12;
       group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.16) * 0.12;
     }
-    if (core.current) {
-      core.current.rotation.y += delta * 0.18;
-      coreMaterial.uniforms.uTime.value = state.clock.elapsedTime;
-    }
+    if (core.current) core.current.rotation.y += delta * 0.18;
+    if (coreMaterial.current) coreMaterial.current.uniforms.uTime.value = state.clock.elapsedTime;
   });
 
   const nodes = Array.from({ length: 22 }, (_, i) => {
@@ -66,7 +63,13 @@ function Network() {
     <group ref={group}>
       <mesh ref={core}>
         <icosahedronGeometry args={[0.43, 3]} />
-        <primitive object={coreMaterial} attach="material" />
+        <shaderMaterial
+          ref={coreMaterial}
+          uniforms={{ uTime: { value: 0 } }}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          transparent
+        />
       </mesh>
       {nodes.map((node, i) => (
         <group key={i} position={node.position}>
