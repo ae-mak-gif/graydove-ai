@@ -1,5 +1,4 @@
 "use client";
-
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -18,12 +17,9 @@ export function Gallery() {
   const [category, setCategory] = useState("All");
   const [mode, setMode] = useState<"overview" | "index">("overview");
   const [active, setActive] = useState<string | null>(null);
-  const [selected, setSelected] = useState<string | null>(null);
   const reduce = useReducedMotion();
   const router = useRouter();
   const filtered = useMemo(() => projects.filter((project) => category === "All" || project.category === category), [category]);
-
-  const openProject = (slug: string) => router.push("/project/" + slug);
 
   return <section className="gallery-section unveil-gallery" aria-label="Selected AI projects">
     <div className="gallery-toolbar unveil-toolbar">
@@ -40,7 +36,7 @@ export function Gallery() {
       <div className="unveil-stage-top"><span>SELECTED EXPLORATIONS</span><span>2026 — ONGOING</span></div>
       <AnimatePresence mode="wait">
         {mode === "overview" ? <motion.div key="overview" className="unveil-overview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.65 }}>
-          <UnveilGalleryScene onSelect={openProject} active={active} reduced={!!reduce}/>
+          <UnveilGalleryScene projects={filtered} onSelect={(slug) => router.push("/project/" + slug)} onHover={setActive} active={active} reduced={!!reduce}/>
           <div className="unveil-mobile-grid">
             {filtered.map((project) => <Link key={project.slug} href={"/project/" + project.slug} className="unveil-mobile-card">
               <div><Image src={project.image} alt={project.title + " interface concept"} fill sizes="50vw"/></div>
