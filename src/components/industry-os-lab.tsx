@@ -115,7 +115,7 @@ export default function IndustryOSLab() {
   const filteredExceptions = industry.exceptions.filter(item=>(item.title+" "+item.description).toLowerCase().includes(query.toLowerCase()));
   return <div className="industry-os-lab" style={{"--iol-accent":industry.accent,"--iol-accent-soft":industry.accentSoft} as CSSProperties}>
     <aside className="iol-sidebar">
-      <Link href="/" className="iol-brand"><span>G.</span><b>GRAYDOVE</b><small>INTELLIGENCE SYSTEMS</small></a>
+      <Link href="/" className="iol-brand"><span>G.</span><b>GRAYDOVE</b><small>INTELLIGENCE SYSTEMS</small></Link>
       <div className="iol-side-label">INDUSTRY WORKSPACES</div>
       <nav className="iol-industries" aria-label="Industry workspaces">
         {industries.map(item=>{const IndustryIcon=icons[item.id];return <button key={item.id} onClick={()=>{setIndustryId(item.id);setTab("overview");}} className={industryId===item.id?"active":""} aria-pressed={industryId===item.id}><IndustryIcon size={16}/><span>{item.name}</span><ChevronRight size={13}/></button>;})}
