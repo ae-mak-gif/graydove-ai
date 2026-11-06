@@ -33,7 +33,7 @@ try {
   await mobile.goto(base, { waitUntil: "networkidle" });
   if (await mobile.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error("Mobile layout overflows horizontally");
   await mobile.getByRole("button", { name: "Open menu" }).click();
-  if (await mobile.locator(".mobile-nav a").count() !== 5) throw new Error("Mobile navigation should expose four links");
+  if (await mobile.locator(".mobile-nav a").count() !== 5) throw new Error("Mobile navigation should expose five links");
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join("; "));
   console.log("Smoke checks passed: " + routes.length + " routes, gallery modes, filtering, mobile navigation and responsive width.");
 } finally {
