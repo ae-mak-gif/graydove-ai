@@ -36,7 +36,7 @@ export function Gallery() {
     <div className="unveil-stage">
       <div className="unveil-stage-top"><span>SELECTED EXPLORATIONS</span><span>2026 — ONGOING</span></div>
       <AnimatePresence mode="wait">
-        {mode === "overview" ? <motion.div key="overview" className="unveil-overview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.65 }}>
+        {mode === "overview" ? <motion.div key="overview" className="unveil-overview" initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.65 }}>
           <UnveilGalleryScene projects={filtered} onSelect={(slug) => router.push("/project/" + slug)} onHover={setActive} active={active} reduced={!!reduce}/>
           <div className="unveil-mobile-grid">
             {filtered.map((project) => <Link key={project.slug} href={"/project/" + project.slug} className="unveil-mobile-card">
