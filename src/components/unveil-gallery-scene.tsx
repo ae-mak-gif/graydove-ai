@@ -2,7 +2,7 @@
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader, SRGBColorSpace, type Group } from "three";
 import { useRef } from "react";
-import { projects as allProjects, type Project } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
 type Props = { projects: Project[]; onSelect: (slug: string) => void; onHover: (slug: string | null) => void; active: string | null; reduced: boolean };
 
