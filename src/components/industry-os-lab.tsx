@@ -1,12 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
-  Activity, AlertTriangle, ArrowDownRight, ArrowUpRight, Bot, Building2,
-  CheckCircle2, ChevronRight, CircleDot, ClipboardList, Clock3, Factory,
-  FileSearch, Gauge, HeartPulse, Landmark, Layers3, Package, Search,
-  ShieldCheck, ShoppingBag, Sparkles, Truck, Workflow, Wrench, Zap
+  AlertTriangle, ArrowDownRight, ArrowUpRight, Bot, Building2,
+  CheckCircle2, ChevronRight, CircleDot, Factory, Gauge, HeartPulse, Landmark,
+  Layers3, Search, ShieldCheck, ShoppingBag, Sparkles, Truck, Workflow
 } from "lucide-react";
 
 type KPI = { label: string; value: string; change: string; note: string; direction: "up" | "down" | "flat" };
@@ -97,7 +97,7 @@ const tabs = [
 type Tab = typeof tabs[number]["id"];
 const icons: Record<string,LucideIcon> = {finance:Landmark,healthcare:HeartPulse,manufacturing:Factory,logistics:Truck,retail:ShoppingBag,construction:Building2};
 
-function MetricCard({item,index}:{item:KPI;index:number}) {
+function MetricCard({item}:{item:KPI}) {
   const Icon = item.direction==="up" ? ArrowUpRight : item.direction==="down" ? ArrowDownRight : CircleDot;
   return <article className="iol-metric">
     <span className="iol-metric-label">{item.label}</span>
@@ -112,8 +112,7 @@ export default function IndustryOSLab() {
   const [query,setQuery] = useState("");
   const industry = useMemo(()=>industries.find(item=>item.id===industryId) ?? industries[0], [industryId]);
   const filteredExceptions = industry.exceptions.filter(item=>(item.title+" "+item.description).toLowerCase().includes(query.toLowerCase()));
-  const Icon = icons[industry.id];
-  return <div className="industry-os-lab" style={{"--iol-accent":industry.accent,"--iol-accent-soft":industry.accentSoft} as React.CSSProperties}>
+  return <div className="industry-os-lab" style={{"--iol-accent":industry.accent,"--iol-accent-soft":industry.accentSoft} as CSSProperties}>
     <aside className="iol-sidebar">
       <a href="/" className="iol-brand"><span>G.</span><b>GRAYDOVE</b><small>INTELLIGENCE SYSTEMS</small></a>
       <div className="iol-side-label">INDUSTRY WORKSPACES</div>
@@ -137,7 +136,7 @@ export default function IndustryOSLab() {
       <div className="iol-content">
         {tab==="overview" && <>
           <div className="iol-section-intro"><div><span>01 / UNIVERSAL OPERATIONS DASHBOARD</span><h2>Operational command</h2></div><p>One view of work, process health, risk and intelligence across the organisation.</p></div>
-          <div className="iol-kpis">{industry.kpis.map((item,index)=><MetricCard key={item.label} item={item} index={index}/>)}</div>
+          <div className="iol-kpis">{industry.kpis.map((item)=><MetricCard key={item.label} item={item}/>)}</div>
           <div className="iol-overview-grid">
             <section className="iol-panel iol-queue-panel">
               <div className="iol-panel-head"><div><span>PRIORITY WORK QUEUE</span><h3>Exceptions requiring attention</h3></div><span className="iol-count">{industry.exceptions.length} OPEN</span></div>
