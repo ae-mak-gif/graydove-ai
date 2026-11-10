@@ -1,14 +1,15 @@
 "use client";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader, SRGBColorSpace, type Group } from "three";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { Project } from "@/data/projects";
 
-type Props = { projects: Project[]; onSelect: (slug: string) => void; onHover: (slug: string | null) => void; active: string | null; reduced: boolean };
+type Props = { projects: Project[]; onSelect: (slug: string) => void; onHover: (slug: string | null) => void; active: string | null; reduced: boolean; onReady: () => void };
 
-function ProjectPlanes({ projects, onSelect, onHover, active, reduced }: Props) {
+function ProjectPlanes({ projects, onSelect, onHover, active, reduced, onReady }: Props) {
   const textures = useLoader(TextureLoader, projects.map((project) => project.image));
   const group = useRef<Group | null>(null);
+  useEffect(() => { onReady(); }, [onReady]);
   textures.forEach((texture) => { texture.colorSpace = SRGBColorSpace; });
   useFrame((state, delta) => {
     if (!group.current || reduced) return;
