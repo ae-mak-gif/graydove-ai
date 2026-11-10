@@ -16,3 +16,21 @@
 .gd-home-end>div:last-child{max-width:350px}
 @media(max-width:850px){.gd-home-intro-main{grid-template-columns:1fr .7fr;gap:24px}.gd-home-intro-main h1{font-size:clamp(44px,6.6vw,66px)}}
 @media(max-width:650px){.gd-home-intro-top span:last-child,.gd-home-intro-bottom span:last-child,.gd-home-projects-heading span:last-child{display:none}.gd-home-intro-main{grid-template-columns:1fr;gap:24px;padding:42px 0 30px}.gd-home-intro-main h1{font-size:clamp(44px,11.5vw,64px)}.gd-home-intro-copy{max-width:320px}.gd-home-end{grid-template-columns:1fr;gap:25px;padding:60px var(--page)}.gd-home-end h2{font-size:52px}}
+
+
+/* Progressive fallback: project cards remain visible until the WebGL gallery has loaded. */
+@media(min-width:651px){
+  .unveil-overview:not(.scene-ready) .unveil-fallback-grid{
+    display:grid;position:absolute;inset:9% 0 8%;z-index:2;
+    grid-template-columns:repeat(4,minmax(0,1fr));align-content:center;
+    gap:22px 16px;padding:18px 0;background:#fff;
+  }
+  .unveil-overview:not(.scene-ready) .unveil-fallback-grid .unveil-mobile-card>div{position:relative;aspect-ratio:1.45;background:#f3f3f3;overflow:hidden}
+  .unveil-overview:not(.scene-ready) .unveil-fallback-grid .unveil-mobile-card img{object-fit:cover}
+  .unveil-overview:not(.scene-ready) .unveil-fallback-grid .unveil-mobile-card>span{display:flex;flex-direction:column;gap:5px;padding-top:8px;font:8px var(--mono);letter-spacing:.03em}
+  .unveil-overview:not(.scene-ready) .unveil-fallback-grid .unveil-mobile-card i{font-style:normal;color:#999}
+  .unveil-overview.scene-ready .unveil-fallback-grid{display:none}
+}
+@media(max-width:650px){
+  .unveil-overview.scene-ready .unveil-fallback-grid{display:grid}
+}
