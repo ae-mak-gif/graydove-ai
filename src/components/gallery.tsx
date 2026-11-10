@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Grid2X2, Layers3 } from "lucide-react";
 import Image from "next/image";
@@ -10,17 +10,19 @@ import { projects, categories } from "@/data/projects";
 
 const UnveilGalleryScene = dynamic(() => import("./unveil-gallery-scene").then((module) => module.UnveilGalleryScene), {
   ssr: false,
-  loading: () => <div className="unveil-scene-loading" />
+  loading: () => <div className="unveil-scene-loading" aria-hidden="true" />
 });
 
 export function Gallery() {
   const [category, setCategory] = useState("All");
   const [mode, setMode] = useState<"overview" | "index">("overview");
   const [active, setActive] = useState<string | null>(null);
+  const [sceneReady, setSceneReady] = useState(false);
   const reduce = useReducedMotion();
   const router = useRouter();
   const filtered = useMemo(() => projects.filter((project) => category === "All" || project.category === category), [category]);
   const activeProject = projects.find((project) => project.slug === active);
+  const handleSceneReady = useCallback(() => setSceneReady(true), []);
 
   return <section className="gallery-section unveil-gallery" aria-label="Selected AI projects">
     <div className="gallery-toolbar unveil-toolbar">
@@ -29,18 +31,18 @@ export function Gallery() {
         <span className="count-number">{String(filtered.length).padStart(2, "0")} <i>/ {String(projects.length).padStart(2, "0")}</i></span>
       </div>
       <div className="filters" aria-label="Filter projects">
-        {categories.map((item) => <button key={item} type="button" aria-pressed={category === item} className={category === item ? "selected" : ""} onClick={() => setCategory(item)}>{item}</button>)}
+        {categories.map((item) => <button key={item} type="button" aria-pressed={category === item} className={category === item ? "selected" : ""} onClick={() => { setSceneReady(false); setCategory(item); }}>{item}</button>)}
       </div>
       <span className="unveil-hint">SELECT A PROJECT TO EXPLORE <ArrowUpRight size={12}/></span>
     </div>
     <div className="unveil-stage">
       <div className="unveil-stage-top"><span>SELECTED EXPLORATIONS</span><span>2026 — ONGOING</span></div>
       <AnimatePresence mode="wait">
-        {mode === "overview" ? <motion.div key="overview" className="unveil-overview" initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.65 }}>
-          <UnveilGalleryScene projects={filtered} onSelect={(slug) => router.push("/project/" + slug)} onHover={setActive} active={active} reduced={!!reduce}/>
-          <div className="unveil-mobile-grid">
+        {mode === "overview" ? <motion.div key="overview" className={"unveil-overview" + (sceneReady ? " scene-ready" : "")} initial={false} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.65 }}>
+          <UnveilGalleryScene projects={filtered} onSelect={(slug) => router.push("/project/" + slug)} onHover={setActive} active={active} reduced={!!reduce} onReady={handleSceneReady}/>
+          <div className="unveil-mobile-grid unveil-fallback-grid">
             {filtered.map((project) => <Link key={project.slug} href={"/project/" + project.slug} className="unveil-mobile-card">
-              <div><Image src={project.image} alt={project.title + " interface concept"} fill sizes="50vw"/></div>
+              <div><Image src={project.image} alt={project.title + " interface concept"} fill sizes="(max-width: 650px) 50vw, 25vw"/></div>
               <span><b>{project.number} / {project.title}</b><i>{project.category}</i></span>
             </Link>)}
           </div>
